@@ -4,7 +4,7 @@ namespace Ermradulsharma\Footprints;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Str;
+use Illuminate\Support\Str;
 
 class Footprinter implements FootprinterInterface
 {
