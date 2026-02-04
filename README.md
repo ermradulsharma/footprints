@@ -22,7 +22,7 @@ In modern marketing, knowing your **Return on Investment (ROI)** is everything. 
 - **First-Touch Attribution**: Automatically tracks the journey of unauthenticated users.
 - **Queueable Tracking**: High-performance tracking that doesn't slow down your application.
 - **Bot Detection**: (Optional) Filter out search engine crawlers to keep your data clean.
-- **Laravel 12 Ready**: Fully modernized with native PHP 8.2 features and constructor promotion.
+- **Laravel 12 Ready**: Fully modernized and tested across PHP 7.4 to 8.4.
 
 ---
 
