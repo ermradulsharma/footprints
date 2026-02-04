@@ -35,7 +35,7 @@ jobs:
 
             -   name: Install dependencies
                 run: |
-                    composer config audit.abandoned ignore
+                    composer config audit.block-insecure false
                     composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" "phpunit/phpunit:${{ matrix.phpunit }}" --no-interaction --no-update --dev
                     composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-audit
 
