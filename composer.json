@@ -1,0 +1,54 @@
+{
+    "name": "ermradulsharma/footprints",
+    "type": "library",
+    "description": "A simple registration attribution tracking solution for Laravel (UTM Parameters and Referrers)",
+    "keywords": [
+        "footprints",
+        "tracking",
+        "utm",
+        "utm parameters",
+        "user tracking",
+        "attribution tracking"
+    ],
+    "homepage": "https://github.com/ermradulsharma/footprints",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mradul Sharma",
+            "email": "skywalkerlkn@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0",
+        "jaybizzle/crawler-detect": "^1.2"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0|^7.0|^8.0|^9.0|^10.0",
+        "phpunit/phpunit": "^9.5|^10.0|^11.0",
+        "friendsofphp/php-cs-fixer": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ermradulsharma\\Footprints\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ermradulsharma\\Footprints\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Ermradulsharma\\Footprints\\FootprintsServiceProvider"
+            ]
+        }
+    }
+}

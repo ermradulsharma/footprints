@@ -1,0 +1,17 @@
+/.idea
+/build
+/coverage
+/node_modules
+/vendor
+/build
+.phpunit.result.cache
+composer.lock
+.php_cs.cache
+phpunit.xml
+result.cache
+.DS_Store
+Thumbs.db
+composer.phar
+composer.lock
+package-lock.json
+yarn-error.log
