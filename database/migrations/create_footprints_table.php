@@ -4,7 +4,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateFootprintsTable extends Migration
 {
 
     private function getConnectionName()
@@ -58,4 +58,4 @@ return new class extends Migration
     {
         Schema::connection($this->getConnectionName())->drop(config('footprints.table_name'));
     }
-};
+}

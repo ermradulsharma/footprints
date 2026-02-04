@@ -25,17 +25,11 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
 
     public function getEnvironmentSetUp($app)
     {
-        //
-    }
+        // import the CreateFootprintsTable class from the migration
+        require_once __DIR__ . '/../database/migrations/create_footprints_table.php';
 
-    /**
-     * Define database migrations.
-     *
-     * @return void
-     */
-    protected function defineDatabaseMigrations()
-    {
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        // run the up() method of that migration class
+        (new \CreateFootprintsTable)->up();
     }
 
     /**
