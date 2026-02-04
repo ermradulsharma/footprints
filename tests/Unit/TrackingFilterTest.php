@@ -8,28 +8,52 @@ class TrackingFilterTest extends TestCase
 {
     public function test_disabled_for_post_requests()
     {
-        // TODO: Implement
+        $filter = new \Ermradulsharma\Footprints\TrackingFilter();
+        $request = \Illuminate\Http\Request::create('/test', 'POST');
+
+        $this->assertFalse($filter->shouldTrack($request));
     }
 
     public function test_disabled_on_authentication()
     {
-        // TODO: Implement
+        \Illuminate\Support\Facades\Config::set('footprints.disable_on_authentication', true);
+        \Illuminate\Support\Facades\Auth::shouldReceive('guard')->andReturnSelf();
+        \Illuminate\Support\Facades\Auth::shouldReceive('check')->andReturn(true);
+
+        $filter = new \Ermradulsharma\Footprints\TrackingFilter();
+        $request = \Illuminate\Http\Request::create('/test', 'GET');
+
+        $this->assertFalse($filter->shouldTrack($request));
     }
 
     public function test_disabled_for_internal_links()
     {
-        // TODO: Implement
+        \Illuminate\Support\Facades\Config::set('footprints.disable_internal_links', true);
+
+        $filter = new \Ermradulsharma\Footprints\TrackingFilter();
+
+        $request = \Illuminate\Http\Request::create('/test', 'GET', [], [], [], ['HTTP_REFERER' => 'http://localhost/another-page']);
+
+        $this->assertFalse($filter->shouldTrack($request));
     }
 
     public function test_disabled_for_landing_page()
     {
-        // TODO: Implement
+        \Illuminate\Support\Facades\Config::set('footprints.landing_page_blacklist', ['blacklisted-path']);
+
+        $filter = new \Ermradulsharma\Footprints\TrackingFilter();
+        $request = \Illuminate\Http\Request::create('/blacklisted-path', 'GET');
+
+        $this->assertFalse($filter->shouldTrack($request));
     }
 
     public function test_disabled_for_robots_tracking()
     {
-        // TODO: Implement
+        \Illuminate\Support\Facades\Config::set('footprints.disable_robots_tracking', true);
+
+        $filter = new \Ermradulsharma\Footprints\TrackingFilter();
+        $request = \Illuminate\Http\Request::create('/test', 'GET', [], [], [], ['HTTP_USER_AGENT' => 'Googlebot']);
+
+        $this->assertFalse($filter->shouldTrack($request));
     }
 }
-
-

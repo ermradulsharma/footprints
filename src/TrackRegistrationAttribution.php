@@ -13,7 +13,7 @@ use Ermradulsharma\Footprints\Jobs\AssignPreviousVisits;
  */
 trait TrackRegistrationAttribution
 {
-    public static function bootTrackRegistrationAttribution()
+    public static function bootTrackRegistrationAttribution(): void
     {
         // Add an observer that upon registration will automatically sync up prior visits.
         static::created(function (Model $model) {
@@ -23,23 +23,18 @@ trait TrackRegistrationAttribution
 
     /**
      * Get all of the visits for the user.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function visits()
+    public function visits(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Visit::class, config('footprints.column_name'))->orderBy('created_at', 'desc');
     }
 
     /**
-     * Method depricated use 'trackRegistration' method.
-     *
-     * @deprecated
-     * @return void
+     * @deprecated Use 'trackRegistration' instead.
      */
-    public function assignPreviousVisits()
+    public function assignPreviousVisits(): void
     {
-        return $this->trackRegistration();
+        $this->trackRegistration(request());
     }
 
     /**
@@ -58,23 +53,17 @@ trait TrackRegistrationAttribution
 
     /**
      * The initial attribution data that eventually led to a registration.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function initialAttributionData()
+    public function initialAttributionData(): ?Visit
     {
         return $this->hasMany(Visit::class, config('footprints.column_name'))->orderBy('created_at', 'asc')->first();
     }
 
     /**
      * The final attribution data before registration.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function finalAttributionData()
+    public function finalAttributionData(): ?Visit
     {
         return $this->hasMany(Visit::class, config('footprints.column_name'))->orderBy('created_at', 'desc')->first();
     }
 }
-
-

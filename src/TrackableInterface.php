@@ -4,6 +4,10 @@ namespace Ermradulsharma\Footprints;
 
 use Illuminate\Http\Request;
 
+/**
+ * Interface TrackableInterface
+ * @property int|string $id
+ */
 interface TrackableInterface
 {
     /**
@@ -14,5 +18,3 @@ interface TrackableInterface
      */
     public function trackRegistration(Request $request): void;
 }
-
-

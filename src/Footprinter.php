@@ -8,25 +8,24 @@ use Illuminate\Support\Str;
 
 class Footprinter implements FootprinterInterface
 {
-    protected Request $request;
-
-    protected string $random;
-
-    public function __construct()
-    {
+    /**
+     * Create a new Footprinter instance.
+     */
+    public function __construct(
+        protected string $random = ''
+    ) {
         $this->random = Str::random(20); // Will only be set once during requests since this class is a singleton
     }
 
     /** @inheritDoc */
     public function footprint(Request $request): string
     {
-        $this->request = $request;
 
         if ($request->hasCookie(config('footprints.cookie_name'))) {
             return (string) $request->cookie(config('footprints.cookie_name'));
         }
 
-        $footprint = $this->fingerprint();
+        $footprint = $this->fingerprint($request);
 
         // This will add the cookie to the response
         Cookie::queue(
@@ -48,15 +47,13 @@ class Footprinter implements FootprinterInterface
      *
      * @return string
      */
-    protected function fingerprint(): string
+    protected function fingerprint(Request $request): string
     {
         // This is highly inspired from the $request->fingerprint() method
         return sha1(implode('|', array_filter([
-            $this->request->ip(),
-            $this->request->header('User-Agent'),
+            $request->ip(),
+            $request->header('User-Agent'),
             config('footprints.uniqueness') ? $this->random : null,
         ])));
     }
 }
-
-

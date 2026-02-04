@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Visit extends Model
 {
-
     /**
      * The name of the database table.
      *
@@ -33,11 +32,7 @@ class Visit extends Model
 
     /**
      * Override constructor to set the table name @ time of instantiation.
-     *
-     * @param array $attributes
-     * @return void
      */
-
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
@@ -51,10 +46,8 @@ class Visit extends Model
 
     /**
      * Get the account that owns the visit.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function account()
+    public function account(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         $model = config('footprints.model');
 
@@ -63,8 +56,6 @@ class Visit extends Model
 
     /**
      * Scope a query to only include previous visits.
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopePreviousVisits($query, $footprint)
     {
@@ -73,8 +64,6 @@ class Visit extends Model
 
     /**
      * Scope a query to only include previous visits that have been unassigned.
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeUnassignedPreviousVisits($query, $footprint)
     {
@@ -82,14 +71,10 @@ class Visit extends Model
     }
 
     /**
-     * Scope a query to only include unassigned visits older than $days days
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * Scope a query to only include unassigned visits older than $days days.
      */
     public function scopePrunable($query, $days)
     {
         return $query->whereNull(config('footprints.column_name'))->where('created_at', '<=', today()->subDays($days));
     }
 }
-
-

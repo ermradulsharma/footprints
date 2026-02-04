@@ -10,21 +10,21 @@ class TrackVisit implements ShouldQueue
 {
     use Queueable;
 
-    protected array $attributionData;
-    public $trackableId;
+    /**
+     * Create a new job instance.
+     */
+    public function __construct(
+        protected array $attributionData,
+        public mixed $trackableId = null
+    ) {}
 
-    public function __construct(array $attributionData, $trackableId = null)
+    /**
+     * Execute the job.
+     */
+    public function handle(): void
     {
-        $this->attributionData = $attributionData;
-        $this->trackableId = $trackableId;
-    }
-
-    public function handle()
-    {
-        Visit::create(array_merge([
+        Visit::query()->create(array_merge([
             config('footprints.column_name') => $this->trackableId,
         ], $this->attributionData));
     }
 }
-
-

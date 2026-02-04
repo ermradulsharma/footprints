@@ -17,13 +17,9 @@ class TrackingLogger implements TrackingLoggerInterface
 
     /**
      * Track the request.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Request
      */
     public function track(Request $request): Request
     {
-
         $job = new TrackVisit($this->captureAttributionData(), Auth::user() ? Auth::user()->id : null);
 
         if (config('footprints.async') == true) {
@@ -32,7 +28,7 @@ class TrackingLogger implements TrackingLoggerInterface
             $job->handle(); // @phpstan-ignore-line
         }
 
-        return $this->request;
+        return $request;
     }
 
     /**

@@ -1,21 +1,21 @@
 {
     "name": "ermradulsharma/footprints",
     "type": "library",
-    "description": "A simple registration attribution tracking solution for Laravel (UTM Parameters and Referrers)",
+    "description": "Seamlessly track UTM parameters and referrers for user registration attribution in Laravel applications.",
     "keywords": [
-        "footprints",
-        "tracking",
+        "laravel",
         "utm",
-        "utm parameters",
-        "user tracking",
-        "attribution tracking"
+        "attribution tracking",
+        "visitor footprints",
+        "marketing analytics",
+        "user registration"
     ],
     "homepage": "https://github.com/ermradulsharma/footprints",
     "license": "MIT",
     "authors": [
         {
             "name": "Mradul Sharma",
-            "email": "skywalkerlkn@gmail.com"
+            "email": "skywalkerlknw@gmail.com"
         }
     ],
     "require": {
@@ -24,8 +24,8 @@
         "jaybizzle/crawler-detect": "^1.2"
     },
     "require-dev": {
-        "orchestra/testbench": "^6.0|^7.0|^8.0|^9.0|^10.0",
-        "phpunit/phpunit": "^9.5|^10.0|^11.0",
+        "orchestra/testbench": "^9.0",
+        "phpunit/phpunit": "^10.0",
         "friendsofphp/php-cs-fixer": "^3.0"
     },
     "autoload": {

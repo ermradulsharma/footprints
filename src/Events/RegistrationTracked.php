@@ -10,18 +10,10 @@ class RegistrationTracked
 {
     use Dispatchable, SerializesModels;
 
-    public TrackableInterface $trackable;
-
     /**
      * Create a new event instance.
-     *
-     * @param TrackableInterface $trackable
-     * @return void
      */
-    public function __construct(TrackableInterface $trackable)
-    {
-        $this->trackable = $trackable;
-    }
+    public function __construct(
+        public TrackableInterface $trackable
+    ) {}
 }
-
-

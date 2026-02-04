@@ -23,15 +23,15 @@ class PruneCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): int
     {
-        $days = $this->option('days') ?? config('footprints.attribution_duration') / (60 * 60 * 24);
+        $days = (int) ($this->option('days') ?? config('footprints.attribution_duration') / (60 * 60 * 24));
 
-        return Visit::prunable($days)->delete();
+        Visit::query()->prunable($days)->delete();
+
+        $this->info("Successfully pruned unassigned footprints older than {$days} days.");
+
+        return self::SUCCESS;
     }
 }
-
-

@@ -16,16 +16,18 @@ class AssignPreviousVisits implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public string $footprint;
-    public TrackableInterface $trackable;
+    /**
+     * Create a new job instance.
+     */
+    public function __construct(
+        public string $footprint,
+        public TrackableInterface $trackable
+    ) {}
 
-    public function __construct(string $footprint, TrackableInterface $trackable)
-    {
-        $this->footprint = $footprint;
-        $this->trackable = $trackable;
-    }
-
-    public function handle()
+    /**
+     * Execute the job.
+     */
+    public function handle(): void
     {
         Visit::unassignedPreviousVisits($this->footprint)->update(
             [
@@ -36,5 +38,3 @@ class AssignPreviousVisits implements ShouldQueue
         event(new RegistrationTracked($this->trackable));
     }
 }
-
-

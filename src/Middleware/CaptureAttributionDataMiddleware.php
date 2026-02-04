@@ -10,15 +10,13 @@ use Ermradulsharma\Footprints\TrackingLoggerInterface;
 
 class CaptureAttributionDataMiddleware
 {
-    protected TrackingFilterInterface $filter;
-
-    protected TrackingLoggerInterface $logger;
-
-    public function __construct(TrackingFilterInterface $filter, TrackingLoggerInterface $logger)
-    {
-        $this->filter = $filter;
-        $this->logger = $logger;
-    }
+    /**
+     * Create a new CaptureAttributionDataMiddleware instance.
+     */
+    public function __construct(
+        protected TrackingFilterInterface $filter,
+        protected TrackingLoggerInterface $logger
+    ) {}
 
     /**
      * Handle an incoming request.
@@ -28,7 +26,7 @@ class CaptureAttributionDataMiddleware
      *
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         if ($this->filter->shouldTrack($request)) {
             $request = $this->logger->track($request);
@@ -37,5 +35,3 @@ class CaptureAttributionDataMiddleware
         return $next($request);
     }
 }
-
-

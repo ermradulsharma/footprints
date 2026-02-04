@@ -9,11 +9,9 @@ use Jaybizzle\CrawlerDetect\CrawlerDetect;
 class TrackingFilter implements TrackingFilterInterface
 {
     /**
-     * The Request instance.
-     *
-     * @var \Illuminate\Http\Request
+     * Create a new TrackingFilter instance.
      */
-    protected Request $request;
+    public function __construct() {}
 
     /**
      * Determine whether or not the request should be tracked.
@@ -23,10 +21,8 @@ class TrackingFilter implements TrackingFilterInterface
      */
     public function shouldTrack(Request $request): bool
     {
-        $this->request = $request;
-
-        //Only track get requests
-        if (! $this->request->isMethod('get')) {
+        // Only track GET requests
+        if (!$request->isMethod('get')) {
             return false;
         }
 
@@ -34,15 +30,15 @@ class TrackingFilter implements TrackingFilterInterface
             return false;
         }
 
-        if ($this->disableInternalLinks()) {
+        if ($this->disableInternalLinks($request)) {
             return false;
         }
 
-        if ($this->disabledLandingPages($this->captureLandingPage())) {
+        if ($this->disabledLandingPages($request->path())) {
             return false;
         }
 
-        if ($this->disableRobotsTracking()) {
+        if ($this->disableRobotsTracking($request)) {
             return false;
         }
 
@@ -61,26 +57,23 @@ class TrackingFilter implements TrackingFilterInterface
         return false;
     }
 
-    /**
-     * @return bool
-     */
-    protected function disableInternalLinks(): bool
+    protected function disableInternalLinks(Request $request): bool
     {
-        if (! config('footprints.disable_internal_links')) {
+        if (!config('footprints.disable_internal_links')) {
             return false;
         }
 
-        $referer = $this->request->headers->get('referer');
+        $referer = (string) $request->headers->get('referer');
 
-        if (! $referer) {
+        if (!$referer) {
             return false;
         }
 
         $parsedUrl = parse_url($referer);
         $referrer_domain = $parsedUrl['host'] ?? null;
-        $request_domain = $this->request->getHost();
+        $request_domain = $request->getHost();
 
-        if (! $referrer_domain) {
+        if (!$referrer_domain) {
             return false;
         }
 
@@ -107,22 +100,21 @@ class TrackingFilter implements TrackingFilterInterface
     /**
      * @return string
      */
-    protected function captureLandingPage(): string
+    protected function captureLandingPage(Request $request): string
     {
-        return $this->request->path();
+        return $request->path();
     }
 
     /**
+     * @param Request $request
      * @return bool
      */
-    protected function disableRobotsTracking(): bool
+    protected function disableRobotsTracking(Request $request): bool
     {
         if (! config('footprints.disable_robots_tracking')) {
             return false;
         }
 
-        return (new CrawlerDetect)->isCrawler();
+        return (new CrawlerDetect())->isCrawler($request->header('User-Agent'));
     }
 }
-
-

@@ -13,12 +13,10 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     /**
      * Overriding getPackageProviders to load our package service provider.
      *
-     * More details at: https://github.com/orchestral/testbench#custom-service-provider
-     *
      * @param  \Illuminate\Foundation\Application  $app
-     * @return array
+     * @return array<int, class-string<\Illuminate\Support\ServiceProvider>>
      */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             FootprintsServiceProvider::class,
@@ -27,11 +25,17 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
 
     public function getEnvironmentSetUp($app)
     {
-        // import the CreatePostsTable class from the migration
-        include_once __DIR__ . '/../database/migrations/create_footprints_table.php.stub';
+        //
+    }
 
-        // run the up() method of that migration class
-        (new \CreateFootprintsTable)->up();
+    /**
+     * Define database migrations.
+     *
+     * @return void
+     */
+    protected function defineDatabaseMigrations()
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 
     /**
@@ -67,12 +71,15 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         $files = array_merge($files, $this->extractFilesFromDataArray($parameters));
 
         $symfonyRequest = SymfonyRequest::create(
-            $this->prepareUrlForRequest($uri), $method, $parameters,
-            $cookies, $files, array_replace($this->serverVariables, $server), $content
+            $this->prepareUrlForRequest($uri),
+            $method,
+            $parameters,
+            $cookies,
+            $files,
+            array_replace($this->serverVariables, $server),
+            $content
         );
 
         return Request::createFromBase($symfonyRequest);
     }
 }
-
-
