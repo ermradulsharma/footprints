@@ -7,6 +7,7 @@
     <a href="LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="Software License"></a>
     <a href="https://github.com/ermradulsharma/footprints/actions"><img src="https://img.shields.io/github/actions/workflow/status/ermradulsharma/footprints/run-tests.yml?branch=main&style=flat-square" alt="Build Status"></a>
     <a href="https://packagist.org/packages/ermradulsharma/footprints"><img src="https://img.shields.io/packagist/dt/ermradulsharma/footprints.svg?style=flat-square&color=blueviolet" alt="Total Downloads"></a>
+    <a href="https://github.com/sponsors/ermradulsharma"><img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86&style=flat-square" alt="Sponsor"></a>
 </p>
 
 **Footprints** is a powerful yet simple registration attribution tracking solution for Laravel (7.0 to 12.0+). It helps you identify where your user signups originate from by tracking UTM parameters and HTTP referrers.
