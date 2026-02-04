@@ -11,9 +11,17 @@ class RegistrationTracked
     use Dispatchable, SerializesModels;
 
     /**
-     * Create a new event instance.
+     * @var \Ermradulsharma\Footprints\TrackableInterface
      */
-    public function __construct(
-        public TrackableInterface $trackable
-    ) {}
+    public $trackable;
+
+    /**
+     * Create a new event instance.
+     *
+     * @param \Ermradulsharma\Footprints\TrackableInterface $trackable
+     */
+    public function __construct(TrackableInterface $trackable)
+    {
+        $this->trackable = $trackable;
+    }
 }

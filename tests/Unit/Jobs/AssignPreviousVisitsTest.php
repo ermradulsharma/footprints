@@ -18,6 +18,7 @@ class AssignPreviousVisitsTest extends TestCase
     {
         /** @var TrackableInterface|\Mockery\MockInterface $trackable */
         $trackable = $this->mock(TrackableInterface::class, function (MockInterface $mock) {
+            $mock->allows('getAttribute')->with('id')->andReturn(123);
             $mock->id = 123;
         });
 

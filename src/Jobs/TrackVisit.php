@@ -11,12 +11,26 @@ class TrackVisit implements ShouldQueue
     use Queueable;
 
     /**
-     * Create a new job instance.
+     * @var array
      */
-    public function __construct(
-        protected array $attributionData,
-        public mixed $trackableId = null
-    ) {}
+    protected $attributionData;
+
+    /**
+     * @var mixed
+     */
+    public $trackableId;
+
+    /**
+     * Create a new job instance.
+     *
+     * @param array $attributionData
+     * @param mixed $trackableId
+     */
+    public function __construct(array $attributionData, $trackableId = null)
+    {
+        $this->attributionData = $attributionData;
+        $this->trackableId = $trackableId;
+    }
 
     /**
      * Execute the job.
