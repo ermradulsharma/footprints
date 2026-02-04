@@ -11,12 +11,26 @@ use Ermradulsharma\Footprints\TrackingLoggerInterface;
 class CaptureAttributionDataMiddleware
 {
     /**
-     * Create a new CaptureAttributionDataMiddleware instance.
+     * @var \Ermradulsharma\Footprints\TrackingFilterInterface
      */
-    public function __construct(
-        protected TrackingFilterInterface $filter,
-        protected TrackingLoggerInterface $logger
-    ) {}
+    protected $filter;
+
+    /**
+     * @var \Ermradulsharma\Footprints\TrackingLoggerInterface
+     */
+    protected $logger;
+
+    /**
+     * Create a new CaptureAttributionDataMiddleware instance.
+     *
+     * @param \Ermradulsharma\Footprints\TrackingFilterInterface $filter
+     * @param \Ermradulsharma\Footprints\TrackingLoggerInterface $logger
+     */
+    public function __construct(TrackingFilterInterface $filter, TrackingLoggerInterface $logger)
+    {
+        $this->filter = $filter;
+        $this->logger = $logger;
+    }
 
     /**
      * Handle an incoming request.
@@ -26,7 +40,7 @@ class CaptureAttributionDataMiddleware
      *
      * @return mixed
      */
-    public function handle(Request $request, Closure $next): mixed
+    public function handle(Request $request, Closure $next)
     {
         if ($this->filter->shouldTrack($request)) {
             $request = $this->logger->track($request);

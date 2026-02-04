@@ -4,17 +4,23 @@ namespace Ermradulsharma\Footprints;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Str;
 
 class Footprinter implements FootprinterInterface
 {
     /**
-     * Create a new Footprinter instance.
+     * @var string
      */
-    public function __construct(
-        protected string $random = ''
-    ) {
-        $this->random = Str::random(20); // Will only be set once during requests since this class is a singleton
+    protected $random;
+
+    /**
+     * Create a new Footprinter instance.
+     *
+     * @param string $random
+     */
+    public function __construct($random = '')
+    {
+        $this->random = $random ?: Str::random(20); // Will only be set once during requests since this class is a singleton
     }
 
     /** @inheritDoc */

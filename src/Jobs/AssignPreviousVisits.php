@@ -17,17 +17,31 @@ class AssignPreviousVisits implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
-     * Create a new job instance.
+     * @var string
      */
-    public function __construct(
-        public string $footprint,
-        public TrackableInterface $trackable
-    ) {}
+    public $footprint;
+
+    /**
+     * @var \Ermradulsharma\Footprints\TrackableInterface
+     */
+    public $trackable;
+
+    /**
+     * Create a new job instance.
+     *
+     * @param string $footprint
+     * @param \Ermradulsharma\Footprints\TrackableInterface $trackable
+     */
+    public function __construct($footprint, TrackableInterface $trackable)
+    {
+        $this->footprint = $footprint;
+        $this->trackable = $trackable;
+    }
 
     /**
      * Execute the job.
      */
-    public function handle(): void
+    public function handle()
     {
         Visit::unassignedPreviousVisits($this->footprint)->update(
             [

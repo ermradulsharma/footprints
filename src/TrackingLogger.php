@@ -9,11 +9,19 @@ use Illuminate\Support\Facades\Auth;
 class TrackingLogger implements TrackingLoggerInterface
 {
     /**
-     * Create a new TrackingLogger instance.
+     * @var \Illuminate\Http\Request
      */
-    public function __construct(
-        protected Request $request
-    ) {}
+    protected $request;
+
+    /**
+     * Create a new TrackingLogger instance.
+     *
+     * @param \Illuminate\Http\Request $request
+     */
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
 
     /**
      * Track the request.
@@ -51,7 +59,9 @@ class TrackingLogger implements TrackingLoggerInterface
             $this->getCustomParameter()
         );
 
-        return array_map(fn(?string $item) => is_string($item) ? substr($item, 0, 255) : $item, $attributes);
+        return array_map(function ($item) {
+            return is_string($item) ? substr($item, 0, 255) : $item;
+        }, $attributes);
     }
 
     /**
