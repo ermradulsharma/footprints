@@ -1,6 +1,6 @@
 <?php
 
-namespace Ermradulsharma\Footprints;
+namespace Skywalker\Footprints;
 
 use Illuminate\Http\Request;
 
@@ -17,5 +17,7 @@ interface FootprinterInterface
      */
     public function footprint(Request $request): string;
 }
+
+
 
 

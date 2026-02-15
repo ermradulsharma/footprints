@@ -1,6 +1,6 @@
 <?php
 
-namespace Ermradulsharma\Footprints;
+namespace Skywalker\Footprints;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -63,3 +63,5 @@ class Footprinter implements FootprinterInterface
         ])));
     }
 }
+
+

@@ -1,13 +1,13 @@
 <?php
 
-namespace Ermradulsharma\Footprints\Tests\Unit\Jobs;
+namespace Skywalker\Footprints\Tests\Unit\Jobs;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
-use Ermradulsharma\Footprints\Events\RegistrationTracked;
-use Ermradulsharma\Footprints\Jobs\AssignPreviousVisits;
-use Ermradulsharma\Footprints\Tests\TestCase;
-use Ermradulsharma\Footprints\TrackableInterface;
+use Skywalker\Footprints\Events\RegistrationTracked;
+use Skywalker\Footprints\Jobs\AssignPreviousVisits;
+use Skywalker\Footprints\Tests\TestCase;
+use Skywalker\Footprints\TrackableInterface;
 use Mockery\MockInterface;
 
 class AssignPreviousVisitsTest extends TestCase
@@ -32,3 +32,5 @@ class AssignPreviousVisitsTest extends TestCase
         });
     }
 }
+
+

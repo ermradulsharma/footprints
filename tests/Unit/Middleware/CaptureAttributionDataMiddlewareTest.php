@@ -1,13 +1,13 @@
 <?php
 
-namespace Ermradulsharma\Footprints\Tests\Unit\Middleware;
+namespace Skywalker\Footprints\Tests\Unit\Middleware;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Ermradulsharma\Footprints\Middleware\CaptureAttributionDataMiddleware;
-use Ermradulsharma\Footprints\Tests\TestCase;
-use Ermradulsharma\Footprints\TrackingFilterInterface;
-use Ermradulsharma\Footprints\TrackingLoggerInterface;
+use Skywalker\Footprints\Middleware\CaptureAttributionDataMiddleware;
+use Skywalker\Footprints\Tests\TestCase;
+use Skywalker\Footprints\TrackingFilterInterface;
+use Skywalker\Footprints\TrackingLoggerInterface;
 
 
 class CaptureAttributionDataMiddlewareTest extends TestCase
@@ -54,5 +54,7 @@ class CaptureAttributionDataMiddlewareTest extends TestCase
         }));
     }
 }
+
+
 
 

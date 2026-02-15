@@ -1,9 +1,9 @@
 <?php
 
-namespace Ermradulsharma\Footprints\Tests\Unit;
+namespace Skywalker\Footprints\Tests\Unit;
 
 use Illuminate\Routing\Route;
-use Ermradulsharma\Footprints\Tests\TestCase;
+use Skywalker\Footprints\Tests\TestCase;
 
 class FootprinterTest extends TestCase
 {
@@ -34,5 +34,7 @@ class FootprinterTest extends TestCase
         $this->assertEquals($footprint1, $footprint2);
     }
 }
+
+
 
 

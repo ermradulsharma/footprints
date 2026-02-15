@@ -59,3 +59,5 @@ class CreateFootprintsTable extends Migration
         Schema::connection($this->getConnectionName())->drop(config('footprints.table_name'));
     }
 }
+
+

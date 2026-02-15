@@ -1,8 +1,8 @@
 <?php
 
-namespace Ermradulsharma\Footprints\Tests\Unit;
+namespace Skywalker\Footprints\Tests\Unit;
 
-use Ermradulsharma\Footprints\Tests\TestCase;
+use Skywalker\Footprints\Tests\TestCase;
 
 class SanityTest extends TestCase
 {
@@ -11,5 +11,7 @@ class SanityTest extends TestCase
         $this->assertTrue(true);
     }
 }
+
+
 
 

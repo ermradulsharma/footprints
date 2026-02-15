@@ -1,30 +1,30 @@
 <?php
 
-namespace Ermradulsharma\Footprints\Middleware;
+namespace Skywalker\Footprints\Middleware;
 
 use Closure;
 
 use Illuminate\Http\Request;
-use Ermradulsharma\Footprints\TrackingFilterInterface;
-use Ermradulsharma\Footprints\TrackingLoggerInterface;
+use Skywalker\Footprints\TrackingFilterInterface;
+use Skywalker\Footprints\TrackingLoggerInterface;
 
 class CaptureAttributionDataMiddleware
 {
     /**
-     * @var \Ermradulsharma\Footprints\TrackingFilterInterface
+     * @var \Skywalker\Footprints\TrackingFilterInterface
      */
     protected $filter;
 
     /**
-     * @var \Ermradulsharma\Footprints\TrackingLoggerInterface
+     * @var \Skywalker\Footprints\TrackingLoggerInterface
      */
     protected $logger;
 
     /**
      * Create a new CaptureAttributionDataMiddleware instance.
      *
-     * @param \Ermradulsharma\Footprints\TrackingFilterInterface $filter
-     * @param \Ermradulsharma\Footprints\TrackingLoggerInterface $logger
+     * @param \Skywalker\Footprints\TrackingFilterInterface $filter
+     * @param \Skywalker\Footprints\TrackingLoggerInterface $logger
      */
     public function __construct(TrackingFilterInterface $filter, TrackingLoggerInterface $logger)
     {
@@ -49,3 +49,5 @@ class CaptureAttributionDataMiddleware
         return $next($request);
     }
 }
+
+

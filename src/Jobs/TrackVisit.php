@@ -1,10 +1,10 @@
 <?php
 
-namespace Ermradulsharma\Footprints\Jobs;
+namespace Skywalker\Footprints\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Ermradulsharma\Footprints\Visit;
+use Skywalker\Footprints\Visit;
 
 class TrackVisit implements ShouldQueue
 {
@@ -42,3 +42,5 @@ class TrackVisit implements ShouldQueue
         ], $this->attributionData));
     }
 }
+
+

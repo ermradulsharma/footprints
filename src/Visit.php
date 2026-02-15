@@ -1,6 +1,6 @@
 <?php
 
-namespace Ermradulsharma\Footprints;
+namespace Skywalker\Footprints;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -78,3 +78,5 @@ class Visit extends Model
         return $query->whereNull(config('footprints.column_name'))->where('created_at', '<=', today()->subDays($days));
     }
 }
+
+

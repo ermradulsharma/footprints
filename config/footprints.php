@@ -73,7 +73,7 @@ return [
     | TrackingFilterInterface.
     |
     */
-    'tracking_filter' => \Ermradulsharma\Footprints\TrackingFilter::class,
+    'tracking_filter' => \Skywalker\Footprints\TrackingFilter::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -85,7 +85,7 @@ return [
     | that the class must implement the TrackingLoggerInterface.
     |
     */
-    'tracking_logger' => \Ermradulsharma\Footprints\TrackingLogger::class,
+    'tracking_logger' => \Skywalker\Footprints\TrackingLogger::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -98,7 +98,7 @@ return [
     | the requests fingerprint - se Laravel Docs for this method.
     |
     */
-    'footprinter' => \Ermradulsharma\Footprints\Footprinter::class,
+    'footprinter' => \Skywalker\Footprints\Footprinter::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -191,5 +191,7 @@ return [
     */
     'async' => false,
 ];
+
+
 
 

@@ -43,3 +43,4 @@ This document outlines the proposed features for the next major versions of the 
 
 **Idea**: A simple UI button or an Artisan command (`footprints:export`) to generate structured reports of all attribution data.
 **Benefit**: Integration with external Excel models or third-party CRM tools becomes effortless for the marketing team.
+

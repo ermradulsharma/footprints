@@ -1,27 +1,29 @@
 <?php
 
-namespace Ermradulsharma\Footprints\Events;
+namespace Skywalker\Footprints\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use Ermradulsharma\Footprints\TrackableInterface;
+use Skywalker\Footprints\TrackableInterface;
 
 class RegistrationTracked
 {
     use Dispatchable, SerializesModels;
 
     /**
-     * @var \Ermradulsharma\Footprints\TrackableInterface
+     * @var \Skywalker\Footprints\TrackableInterface
      */
     public $trackable;
 
     /**
      * Create a new event instance.
      *
-     * @param \Ermradulsharma\Footprints\TrackableInterface $trackable
+     * @param \Skywalker\Footprints\TrackableInterface $trackable
      */
     public function __construct(TrackableInterface $trackable)
     {
         $this->trackable = $trackable;
     }
 }
+
+

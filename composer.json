@@ -1,27 +1,47 @@
 {
-    "name": "ermradulsharma/footprints",
-    "type": "library",
+    "name": "skywalker-labs/footprints",
     "description": "Seamlessly track UTM parameters and referrers for user registration attribution in Laravel applications.",
+    "type": "library",
+    "license": "MIT",
     "keywords": [
         "laravel",
         "utm",
         "attribution tracking",
         "visitor footprints",
         "marketing analytics",
-        "user registration"
+        "user registration",
+        "skywalker"
     ],
-    "homepage": "https://github.com/ermradulsharma/footprints",
-    "license": "MIT",
+    "homepage": "https://github.com/skywalker-labs/footprints",
+    "support": {
+        "issues": "https://github.com/skywalker-labs/footprints/issues",
+        "source": "https://github.com/skywalker-labs/footprints"
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/ermradulsharma"
+        }
+    ],
     "authors": [
         {
+            "name": "Skywalker Labs Team",
+            "email": "skywalkerlknw@gmail.com",
+            "homepage": "https://skywalker-labs.com/",
+            "role": "Developer"
+        },
+        {
             "name": "Mradul Sharma",
-            "email": "skywalkerlknw@gmail.com"
+            "email": "skywalkerlknw@gmail.com",
+            "homepage": "https://mradulsharma.vercel.app/",
+            "role": "Lead Developer"
         }
     ],
     "require": {
         "php": "^7.4|^8.0",
         "illuminate/support": "^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
-        "jaybizzle/crawler-detect": "^1.2"
+        "jaybizzle/crawler-detect": "^1.2",
+        "ermradulsharma/laravel-toolkit": "^1.0|^2.0"
     },
     "require-dev": {
         "orchestra/testbench": "^5.0|^6.0|^7.0|^8.0|^9.0|^10.0",
@@ -30,12 +50,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Ermradulsharma\\Footprints\\": "src/"
+            "Skywalker\\Footprints\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Ermradulsharma\\Footprints\\Tests\\": "tests/"
+            "Skywalker\\Footprints\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -47,8 +67,10 @@
         },
         "laravel": {
             "providers": [
-                "Ermradulsharma\\Footprints\\FootprintsServiceProvider"
+                "Skywalker\\Footprints\\FootprintsServiceProvider"
             ]
         }
-    }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }

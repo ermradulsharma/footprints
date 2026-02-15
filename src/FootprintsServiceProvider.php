@@ -1,43 +1,61 @@
 <?php
 
-namespace Ermradulsharma\Footprints;
+namespace Skywalker\Footprints;
 
+use Skywalker\Support\Providers\PackageServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\ServiceProvider;
 
-class FootprintsServiceProvider extends ServiceProvider
+class FootprintsServiceProvider extends PackageServiceProvider
 {
+    /**
+     * Vendor name.
+     *
+     * @var string
+     */
+    protected $vendor = 'skywalker';
+
+    /**
+     * Package name.
+     *
+     * @var string
+     */
+    protected $package = 'footprints';
     /**
      * Perform post-registration booting of services.
      */
     public function boot(): void
     {
-        $this->publishConfig();
-        $this->publishMigration();
+        parent::boot();
+
+        $this->publishAll();
         $this->bootMacros();
     }
 
     /**
-     * Publish Footprints configuration
+     * Publish Footprints configuration.
+     *
+     * @param  string|null  $path
      */
-    protected function publishConfig()
+    protected function publishConfig(?string $path = null): void
     {
         // Publish config files
         $this->publishes([
-            realpath(__DIR__ . '/config/footprints.php') => config_path('footprints.php'),
+            $this->getBasePath() . '/config/footprints.php' => $path ?: config_path('footprints.php'),
         ], 'config');
     }
 
     /**
-     * Publish Footprints migration
+     * Publish Footprints migration.
+     *
+     * @param  string|null  $path
      */
-    protected function publishMigration()
+    protected function publishMigrations(?string $path = null): void
     {
         $published_migration = glob(database_path('/migrations/*_create_footprints_table.php'));
         if (count($published_migration) === 0) {
             $this->publishes([
-                __DIR__ . '/../database/migrations/create_footprints_table.php' => database_path('/migrations/' . date('Y_m_d_His') . '_create_footprints_table.php'),
+                __DIR__ . '/../database/migrations/create_footprints_table.php' => $path ?: database_path('/migrations/' . date('Y_m_d_His') . '_create_footprints_table.php'),
             ], 'migrations');
         }
     }
@@ -54,11 +72,9 @@ class FootprintsServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // Bring in configuration values
-        $this->mergeConfigFrom(
-            __DIR__ . '/config/footprints.php',
-            'footprints'
-        );
+        parent::register();
+
+        $this->registerConfig();
 
         $this->app->bind(TrackingFilterInterface::class, function ($app) {
             return $app->make(config('footprints.tracking_filter'));

@@ -1,8 +1,8 @@
 <?php
 
-namespace Ermradulsharma\Footprints\Tests\Unit;
+namespace Skywalker\Footprints\Tests\Unit;
 
-use Ermradulsharma\Footprints\Tests\TestCase;
+use Skywalker\Footprints\Tests\TestCase;
 
 class TrackingLoggerTest extends TestCase
 {
@@ -20,11 +20,11 @@ class TrackingLoggerTest extends TestCase
         $request->shouldReceive('input')->andReturn(null);
         $request->headers = new \Symfony\Component\HttpFoundation\HeaderBag(['referer' => 'http://google.com']);
 
-        $logger = new \Ermradulsharma\Footprints\TrackingLogger($request);
+        $logger = new \Skywalker\Footprints\TrackingLogger($request);
 
         $logger->track($request);
 
-        \Illuminate\Support\Facades\Bus::assertDispatched(\Ermradulsharma\Footprints\Jobs\TrackVisit::class);
+        \Illuminate\Support\Facades\Bus::assertDispatched(\Skywalker\Footprints\Jobs\TrackVisit::class);
     }
 
     public function test_logging_job_handled_sync()
@@ -40,7 +40,7 @@ class TrackingLoggerTest extends TestCase
         $request->shouldReceive('input')->andReturn(null);
         $request->headers = new \Symfony\Component\HttpFoundation\HeaderBag();
 
-        $logger = new \Ermradulsharma\Footprints\TrackingLogger($request);
+        $logger = new \Skywalker\Footprints\TrackingLogger($request);
 
         // We can't easily check 'handle' was called without complex mocking, 
         // but we verify it returns the request and doesn't crash.
@@ -61,7 +61,7 @@ class TrackingLoggerTest extends TestCase
         $request->shouldReceive('input')->andReturnUsing(fn($key) => $key === 'utm_source' ? 'google' : null);
         $request->headers = new \Symfony\Component\HttpFoundation\HeaderBag();
 
-        $logger = new \Ermradulsharma\Footprints\TrackingLogger($request);
+        $logger = new \Skywalker\Footprints\TrackingLogger($request);
 
         $reflection = new \ReflectionClass($logger);
         $method = $reflection->getMethod('captureAttributionData');
@@ -73,3 +73,5 @@ class TrackingLoggerTest extends TestCase
         $this->assertEquals('localhost', $data['landing_domain']);
     }
 }
+
+

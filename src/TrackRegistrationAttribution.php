@@ -1,10 +1,10 @@
 <?php
 
-namespace Ermradulsharma\Footprints;
+namespace Skywalker\Footprints;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Ermradulsharma\Footprints\Jobs\AssignPreviousVisits;
+use Skywalker\Footprints\Jobs\AssignPreviousVisits;
 
 /**
  * Class TrackRegistrationAttribution.
@@ -67,3 +67,5 @@ trait TrackRegistrationAttribution
         return $this->hasMany(Visit::class, config('footprints.column_name'))->orderBy('created_at', 'desc')->first();
     }
 }
+
+

@@ -1,11 +1,11 @@
 <?php
 
-namespace Ermradulsharma\Footprints\Tests;
+namespace Skywalker\Footprints\Tests;
 
 use Illuminate\Contracts\Http\Kernel as HttpKernel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Ermradulsharma\Footprints\FootprintsServiceProvider;
+use Skywalker\Footprints\FootprintsServiceProvider;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
@@ -77,3 +77,5 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         return Request::createFromBase($symfonyRequest);
     }
 }
+
+

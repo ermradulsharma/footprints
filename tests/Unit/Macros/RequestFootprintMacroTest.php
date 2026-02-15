@@ -1,8 +1,8 @@
 <?php
 
-namespace Ermradulsharma\Footprints\Tests\Unit\Macros;
+namespace Skywalker\Footprints\Tests\Unit\Macros;
 
-use Ermradulsharma\Footprints\Tests\TestCase;
+use Skywalker\Footprints\Tests\TestCase;
 
 class RequestFootprintMacroTest extends TestCase
 {
@@ -16,3 +16,5 @@ class RequestFootprintMacroTest extends TestCase
         $this->assertNotEmpty($request->footprint());
     }
 }
+
+

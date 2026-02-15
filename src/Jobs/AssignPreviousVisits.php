@@ -1,6 +1,6 @@
 <?php
 
-namespace Ermradulsharma\Footprints\Jobs;
+namespace Skywalker\Footprints\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -8,9 +8,9 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Http\Request;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Ermradulsharma\Footprints\Events\RegistrationTracked;
-use Ermradulsharma\Footprints\TrackableInterface;
-use Ermradulsharma\Footprints\Visit;
+use Skywalker\Footprints\Events\RegistrationTracked;
+use Skywalker\Footprints\TrackableInterface;
+use Skywalker\Footprints\Visit;
 
 class AssignPreviousVisits implements ShouldQueue
 {
@@ -22,7 +22,7 @@ class AssignPreviousVisits implements ShouldQueue
     public $footprint;
 
     /**
-     * @var \Ermradulsharma\Footprints\TrackableInterface
+     * @var \Skywalker\Footprints\TrackableInterface
      */
     public $trackable;
 
@@ -30,7 +30,7 @@ class AssignPreviousVisits implements ShouldQueue
      * Create a new job instance.
      *
      * @param string $footprint
-     * @param \Ermradulsharma\Footprints\TrackableInterface $trackable
+     * @param \Skywalker\Footprints\TrackableInterface $trackable
      */
     public function __construct($footprint, TrackableInterface $trackable)
     {
@@ -52,3 +52,5 @@ class AssignPreviousVisits implements ShouldQueue
         event(new RegistrationTracked($this->trackable));
     }
 }
+
+

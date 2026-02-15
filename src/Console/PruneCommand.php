@@ -1,9 +1,9 @@
 <?php
 
-namespace Ermradulsharma\Footprints\Console;
+namespace Skywalker\Footprints\Console;
 
 use Illuminate\Console\Command;
-use Ermradulsharma\Footprints\Visit;
+use Skywalker\Footprints\Visit;
 
 class PruneCommand extends Command
 {
@@ -35,3 +35,5 @@ class PruneCommand extends Command
         return self::SUCCESS;
     }
 }
+
+

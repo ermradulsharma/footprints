@@ -1,9 +1,9 @@
 <?php
 
-namespace Ermradulsharma\Footprints;
+namespace Skywalker\Footprints;
 
 use Illuminate\Http\Request;
-use Ermradulsharma\Footprints\Jobs\TrackVisit;
+use Skywalker\Footprints\Jobs\TrackVisit;
 use Illuminate\Support\Facades\Auth;
 
 class TrackingLogger implements TrackingLoggerInterface
@@ -168,3 +168,5 @@ class TrackingLogger implements TrackingLoggerInterface
         return $this->request->input('ref');
     }
 }
+
+

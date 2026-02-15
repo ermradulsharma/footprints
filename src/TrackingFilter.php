@@ -1,6 +1,6 @@
 <?php
 
-namespace Ermradulsharma\Footprints;
+namespace Skywalker\Footprints;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -118,3 +118,5 @@ class TrackingFilter implements TrackingFilterInterface
         return (new CrawlerDetect())->isCrawler($request->header('User-Agent'));
     }
 }
+
+
